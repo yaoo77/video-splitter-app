@@ -258,7 +258,22 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-## 4. フロントエンド実装 (HTML/JavaScript)
+## 4. 簡単デプロイ手順
+
+### Railway でのワンクリックデプロイ（推奨）
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fyaoo77%2Fvideo-splitter-app)
+
+1. 上のボタンをクリック
+2. GitHubアカウントでログイン
+3. デプロイ完了まで数分待機
+4. 提供されたURLにアクセス
+
+### その他のデプロイ方法
+
+詳細な手順は [DEPLOYMENT.md](DEPLOYMENT.md) をご覧ください。
+
+## 5. フロントエンド実装 (HTML/JavaScript)
 
 ```html
 <!DOCTYPE html>
