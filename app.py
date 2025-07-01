@@ -49,7 +49,15 @@ def split_video(input_path, output_folder, session_id):
             segment_filename = f"segment_{i+1:03d}.mp4"
             segment_path = os.path.join(output_folder, segment_filename)
             
-            segment.write_videofile(segment_path, codec='libx264', audio_codec='aac')
+            segment.write_videofile(
+                segment_path, 
+                codec='libx264', 
+                audio_codec='aac',
+                temp_audiofile='temp-audio.m4a',
+                remove_temp=True,
+                verbose=False,
+                logger=None
+            )
             segments.append(segment_filename)
             
             # 進捗更新
@@ -60,9 +68,19 @@ def split_video(input_path, output_folder, session_id):
         
         video.close()
         
+        # ZIPファイルを自動作成
+        zip_filename = f"split_videos_{session_id}.zip"
+        zip_path = os.path.join(output_folder, zip_filename)
+        
+        with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for filename in segments:
+                file_path = os.path.join(output_folder, filename)
+                zipf.write(file_path, filename)
+        
         # 処理完了
         processing_status[session_id]['status'] = 'completed'
         processing_status[session_id]['segments'] = segments
+        processing_status[session_id]['zip_file'] = zip_filename
         processing_status[session_id]['completed_at'] = datetime.now()
         
         # 自動削除タイマー設定（24時間後）
@@ -149,14 +167,19 @@ def download_file(session_id, filename):
 def download_zip(session_id):
     if session_id in processing_status and processing_status[session_id]['status'] == 'completed':
         output_folder = os.path.join(app.config['OUTPUT_FOLDER'], session_id)
-        zip_path = f"{output_folder}.zip"
+        zip_filename = processing_status[session_id].get('zip_file', f"split_videos_{session_id}.zip")
+        zip_path = os.path.join(output_folder, zip_filename)
         
-        with zipfile.ZipFile(zip_path, 'w') as zipf:
-            for filename in processing_status[session_id]['segments']:
-                file_path = os.path.join(output_folder, filename)
-                zipf.write(file_path, filename)
-        
-        return send_file(zip_path, as_attachment=True, download_name=f"split_videos_{session_id}.zip")
+        if os.path.exists(zip_path):
+            return send_file(zip_path, as_attachment=True, download_name=zip_filename)
+        else:
+            # フォールバック：ZIPファイルが存在しない場合は即座に作成
+            with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                for filename in processing_status[session_id]['segments']:
+                    file_path = os.path.join(output_folder, filename)
+                    zipf.write(file_path, filename)
+            
+            return send_file(zip_path, as_attachment=True, download_name=zip_filename)
     
     return jsonify({'error': 'ファイルの準備ができていません'}), 404
 

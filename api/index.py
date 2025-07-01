@@ -184,7 +184,7 @@ python app.py
                 </li>
                 <li class="feature-item">
                     <span class="feature-icon">✂️</span>
-                    <span>自動で10分ごとに動画を分割</span>
+                    <span>自動で10分ごとに動画を分割（最大3時間対応）</span>
                 </li>
                 <li class="feature-item">
                     <span class="feature-icon">📊</span>
