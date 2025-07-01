@@ -104,7 +104,7 @@ import time
 import shutil
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024 * 1024  # 2GB制限
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024 * 1024  # 10GB制限
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['OUTPUT_FOLDER'] = 'outputs'
 
@@ -513,8 +513,8 @@ if __name__ == '__main__':
                 selectedFileDiv.textContent = `選択されたファイル: ${file.name} (${fileSize} GB)`;
                 uploadButton.disabled = false;
                 
-                if (file.size > 2 * 1024 * 1024 * 1024) {
-                    showError('ファイルサイズが2GBを超えています。');
+                if (file.size > 10 * 1024 * 1024 * 1024) {
+                    showError('ファイルサイズが10GBを超えています。');
                     uploadButton.disabled = true;
                 }
             } else {

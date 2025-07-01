@@ -235,8 +235,8 @@
                 selectedFileDiv.textContent = `選択されたファイル: ${file.name} (${fileSize} GB)`;
                 uploadButton.disabled = false;
                 
-                if (file.size > 2 * 1024 * 1024 * 1024) {
-                    showError('ファイルサイズが2GBを超えています。');
+                if (file.size > 10 * 1024 * 1024 * 1024) {
+                    showError('ファイルサイズが10GBを超えています。');
                     uploadButton.disabled = true;
                 }
             } else {

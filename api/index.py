@@ -180,7 +180,7 @@ python app.py
             <ul class="feature-list">
                 <li class="feature-item">
                     <span class="feature-icon">📤</span>
-                    <span>動画ファイル（MP4, MOV, AVI）のアップロード（最大2GB）</span>
+                    <span>動画ファイル（MP4, MOV, AVI）のアップロード（最大10GB）</span>
                 </li>
                 <li class="feature-item">
                     <span class="feature-icon">✂️</span>
