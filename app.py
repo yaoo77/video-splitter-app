@@ -160,5 +160,8 @@ def download_zip(session_id):
     
     return jsonify({'error': 'ファイルの準備ができていません'}), 404
 
+# Vercel用のエントリーポイント
+app_instance = app
+
 if __name__ == '__main__':
     app.run(debug=True)
