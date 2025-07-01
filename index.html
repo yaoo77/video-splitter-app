@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動画10分分割ツール - デモページ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .demo-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .demo-notice h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .demo-notice p {
+            color: #856404;
+            margin-bottom: 0;
+        }
+        
+        .features {
+            margin: 30px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 30px;
+        }
+        
+        .tech-stack {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .tech-stack h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tech-item {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        
+        .setup-section {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .setup-section h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        
+        .code-block {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        .github-link {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .github-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .github-button:hover {
+            background-color: #1a1e22;
+        }
+        
+        .architecture-diagram {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .disabled-demo {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .upload-section {
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .file-input-label {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 5px;
+            cursor: not-allowed;
+        }
+        
+        .upload-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 動画10分分割ツール</h1>
+        
+        <div class="demo-notice">
+            <h3>📌 デモページについて</h3>
+            <p>これは静的なデモページです。実際の動画処理機能を使用するには、ローカル環境でFlaskアプリケーションを起動してください。</p>
+        </div>
+        
+        <div class="upload-section disabled-demo">
+            <div class="file-input-wrapper">
+                <label class="file-input-label">📁 動画ファイルを選択（デモ版では無効）</label>
+            </div>
+            <button class="upload-button" disabled>🚀 アップロード開始（デモ版では無効）</button>
+            <div style="margin-top: 10px; color: #666;">
+                ローカル環境でのみ動作します
+            </div>
+        </div>
+        
+        <div class="features">
+            <h2>✨ 主な機能</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <span class="feature-icon">📤</span>
+                    <span>動画ファイル（MP4, MOV, AVI）のアップロード（最大2GB）</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✂️</span>
+                    <span>自動で10分ごとに動画を分割</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <span>リアルタイムの処理進捗表示</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">💾</span>
+                    <span>個別ファイルまたはZIP一括ダウンロード</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">🗑️</span>
+                    <span>24時間後の自動ファイル削除</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">🌐</span>
+                    <span>主要ブラウザ対応（Chrome, Firefox, Safari, Edge）</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="tech-stack">
+            <h3>🛠️ 技術スタック</h3>
+            <div class="tech-list">
+                <div class="tech-item">Python</div>
+                <div class="tech-item">Flask</div>
+                <div class="tech-item">MoviePy</div>
+                <div class="tech-item">HTML5</div>
+                <div class="tech-item">CSS3</div>
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">FFmpeg</div>
+            </div>
+        </div>
+        
+        <div class="architecture-diagram">
+            <h3>🏗️ システム構成</h3>
+            <p>ユーザー → Webブラウザ → Flask Webサーバー → MoviePy（動画分割） → ファイルストレージ</p>
+        </div>
+        
+        <div class="setup-section">
+            <h3>🚀 ローカル環境でのセットアップ</h3>
+            <p>以下のコマンドでローカル環境で実行できます：</p>
+            
+            <div class="code-block">
+# リポジトリをクローン
+git clone https://github.com/yaoo77/video-splitter-app.git
+cd video-splitter-app
+
+# 仮想環境を作成（推奨）
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 依存関係をインストール
+pip install -r requirements.txt
+
+# アプリケーションを起動
+python app.py
+            </div>
+            
+            <p>起動後、ブラウザで <code>http://localhost:5000</code> にアクセスしてください。</p>
+        </div>
+        
+        <div class="github-link">
+            <a href="https://github.com/yaoo77/video-splitter-app" class="github-button" target="_blank">
+                📚 GitHub でソースコードを見る
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; color: #6c757d;">
+            <p>© 2025 Video Splitter App - Open Source Project</p>
+        </div>
+    </div>
+</body>
+</html>
